@@ -65,7 +65,7 @@ const EmblaCarousel = (props) => {
         <div className="embla__container">
           <div className="embla__slide">
             <SlideCard
-              imgSrc={'./src/assets/images/Inferno Pepperoni.webp'}
+              imgSrc={'./images/Inferno Pepperoni.webp'}
               alt={'Inferno Pepperoni'}
               price={399}
               heatLevel={4}
@@ -77,7 +77,7 @@ const EmblaCarousel = (props) => {
           </div>
           <div className="embla__slide">
             <SlideCard
-              imgSrc={'./src/assets/images/Buffalo Chicken Blaze.webp'}
+              imgSrc={'./images/Buffalo Chicken Blaze.webp'}
               alt={'Buffalo Chicken Blaze'}
               price={299}
               heatLevel={3}
@@ -89,7 +89,7 @@ const EmblaCarousel = (props) => {
           </div>
           <div className="embla__slide">
             <SlideCard
-              imgSrc={'./src/assets/images/Five Alarm Fire.webp'}
+              imgSrc={'./images/Five Alarm Fire.webp'}
               alt={'Five Alarm Fire'}
               price={499}
               heatLevel={5}
@@ -101,7 +101,7 @@ const EmblaCarousel = (props) => {
           </div>
           <div className="embla__slide">
             <SlideCard
-              imgSrc={'./src/assets/images/Thai Chili Veggie.webp'}
+              imgSrc={'./images/Thai Chili Veggie.webp'}
               alt={'Thai Chili Veggie'}
               price={99}
               heatLevel={2}
@@ -113,7 +113,7 @@ const EmblaCarousel = (props) => {
           </div>
           <div className="embla__slide">
             <SlideCard
-              imgSrc={'./src/assets/images/Smoky Chipotle BBQ.webp'}
+              imgSrc={'./images/Smoky Chipotle BBQ.webp'}
               alt={'Smoky Chipotle BBQ'}
               price={129}
               heatLevel={3}

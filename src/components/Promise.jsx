@@ -58,7 +58,7 @@ export default function Promise() {
             <div className="overflow-hidden rounded-lg border-2 border-orange-500">
               <img
                 className="h-auto w-full object-cover"
-                src="./src/assets/images/Chef preparing spicy pizza.webp"
+                src="./images/Chef preparing spicy pizza.webp"
                 alt="Chef preparing spicy pizza"
               />
               <div className="absolute inset-0 bg-[#0000004d] hover:bg-[#00000033] transition-all cursor-pointer group group flex items-center justify-center">

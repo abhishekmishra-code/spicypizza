@@ -6,7 +6,7 @@ export default function Home() {
       <div className="absolute inset-0 z-0">
         <img
           className="h-full w-full object-cover"
-          src="./src/assets/images/Spicy Pizza Background.webp"
+          src="./images/Spicy Pizza Background.webp"
           alt="Spicy Pizza Background "
         />
         <div className="absolute inset-0 bg-linear-[90deg,#000000cc_0%,#00000066_100%]"></div>
