@@ -1,0 +1,11 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); */
+@import 'tailwindcss';
+
+body {
+    @apply text-white font-['Poppins'] scroll-smooth
+}
+
+.navigation {
+    @apply md:hover:scale-110 duration-110 p-2 font-medium hover:text-orange-400 ease-in-out
+}
+
