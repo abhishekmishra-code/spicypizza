@@ -1,74 +1,107 @@
-import React, { useState } from "react";
-import("https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css");
+import React, { useState, useEffect, useRef } from "react";
 
 export default function Header() {
-  const [menuVisibility, setMenuVisibility] = useState("");
+  // * State management
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  // Prevent Body Scroll
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [isMenuOpen]);
+
+  // * Close menu on ESC press
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
 
   return (
-    <header className="fixed top-0 z-20 w-full bg-black">
+    <header className="fixed top-0 z-50 w-full bg-black shadow-lg">
       <div className="mx-auto w-full max-w-[1536px] px-4 py-3">
         <div className="flex items-center justify-between">
+          {/* Logo Section */}
           <div className="flex items-center">
             <div className="mr-2 text-orange-500">
-              <i className="ri-fire-fill text-3xl"></i>
+              <i className="ri-fire-fill text-3xl" aria-hidden="true"></i>
             </div>
-            <div>
-              <span className="text-xl font-bold md:text-2xl">
-                Spicy
-                <span className="text-orange-500">Pizza</span>
-              </span>
-            </div>
+            <h1 className="text-xl font-bold md:text-2xl">
+              Spicy
+              <span className="text-orange-500">Pizza</span>
+            </h1>
           </div>
-          <div
-            className={`font-[500] md:block ${menuVisibility === "" ? "hidden" : ""}`}
-          >
-            <ul
-              className="absolute top-5 right-4 flex w-58 flex-col gap-4 rounded-md bg-[#030712ee] py-4 pl-2 md:static md:w-full md:flex-row md:bg-black md:py-0 md:pt-0"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <li
-                className={`absolute top-2 right-2 ${menuVisibility === "" ? "hidden" : ""}`}
-              >
-                <button
-                  id="menu-toggle"
-                  className="cursor-pointer text-white focus:outline-none"
-                  onClick={() => {
-                    setMenuVisibility("");
-                    console.log(menuVisibility);
-                  }}
-                >
-                  <i className="ri-close-line text-2xl"></i>
-                </button>
-              </li>
-              <li className="navigation">
-                <a href="#home">Home</a>
-              </li>
-              <li className="navigation">
-                <a href="#menu">Menu</a>
-              </li>
-              <li className="navigation">
-                <a href="#specials">Specials</a>
-              </li>
-              <li className="navigation">
-                <a href="#location">Location</a>
-              </li>
-              <li className="navigation">
-                <a href="#about">About Us</a>
-              </li>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:block" role="navigation">
+            <ul className="flex gap-8">
+              {["Home", "Menu", "Specials", "Location", "About"].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item.toLowerCase()}`}
+                    className="text-white transition-colors hover:text-orange-500 focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
-          <div className={`${menuVisibility} md:hidden`}>
+          </nav>
+
+          {/* Mobile Navigation */}
+          <div className="relative z-[60] md:hidden" ref={menuRef}>
             <button
-              className="cursor-pointer"
-              onClick={() => {
-                setMenuVisibility("hidden");
-                console.log(menuVisibility);
-              }}
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className="relative z-[60] -mr-2 cursor-pointer p-2 text-2xl text-white focus:ring-2 focus:ring-orange-500 focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <i className="ri-menu-line text-2xl"></i>
+              <i
+                className={`${isMenuOpen ? "ri-close-line" : "ri-menu-line"} align-middle`}
+              ></i>
             </button>
+
+            {/* Backdrop Overlay */}
+            {isMenuOpen && (
+              <div
+                className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+                onClick={() => setIsMenuOpen(false)}
+              ></div>
+            )}
+
+            {/* Mobile Menu */}
+            <nav
+              role="navigation"
+              className={`absolute top-full right-0 z-50 mt-2 w-48 max-w-[calc(100vw-2rem)] min-w-[12rem] origin-top rounded-md bg-gray-900 p-4 transition-all duration-300 ${
+                isMenuOpen
+                  ? "pointer-events-auto scale-100 opacity-100"
+                  : "pointer-events-none scale-95 opacity-0"
+              }`}
+              aria-label="Main navigation"
+              aria-hidden={!isMenuOpen}
+            >
+              <ul className="space-y-4">
+                {["Home", "Menu", "Specials", "Location", "About"].map(
+                  (item) => (
+                    <li key={item}>
+                      <a
+                        href={`#${item.toLowerCase()}`}
+                        className={`block text-white transition-colors hover:text-orange-500 focus:ring-2 focus:ring-orange-500 focus:outline-none`}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
