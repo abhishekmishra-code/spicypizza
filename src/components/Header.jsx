@@ -1,9 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link, NavLink, useLocation } from "react-router";
 
 export default function Header() {
   // * State management
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to the element with the ID from the hash
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   // Prevent Body Scroll
   useEffect(() => {
@@ -43,12 +56,18 @@ export default function Header() {
             <ul className="flex gap-8">
               {["Home", "Menu", "Specials", "Location", "About"].map((item) => (
                 <li key={item}>
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    className="text-white transition-colors hover:text-orange-500 focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                  <NavLink
+                    className={({ isActive }) =>
+                      `${
+                        isActive
+                          ? "border-b-2 border-orange-500 text-orange-500"
+                          : "text-white"
+                      } transition-colors hover:text-orange-500 focus:ring-2 focus:ring-orange-500 focus:outline-none`
+                    }
+                    to={`${item.toLowerCase()}#${item.toLowerCase()}`}
                   >
                     {item}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -90,13 +109,20 @@ export default function Header() {
                 {["Home", "Menu", "Specials", "Location", "About"].map(
                   (item) => (
                     <li key={item}>
-                      <a
-                        href={`#${item.toLowerCase()}`}
-                        className={`block text-white transition-colors hover:text-orange-500 focus:ring-2 focus:ring-orange-500 focus:outline-none`}
+                      
+                      <NavLink
+                        className={({ isActive }) =>
+                          `${
+                            isActive
+                            ? "text-orange-500 underline"
+                            : "text-white"
+                          } block transition-colors hover:text-orange-500 focus:ring-2 focus:ring-orange-500 focus:outline-none`
+                        }
+                        to={`${item.toLowerCase()}#${item.toLowerCase()}`}
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item}
-                      </a>
+                      </NavLink>
                     </li>
                   ),
                 )}
