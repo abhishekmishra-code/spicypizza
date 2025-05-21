@@ -1,12 +1,25 @@
-# React + Vite
+# 🌶️ SpicyPizza - A Hot & Tasty Pizza Ordering App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SpicyPizza is a modern, responsive pizza-themed React app built with Vite, Tailwind CSS, and smooth animations using React Spring and Embla Carousel. It's designed to showcase rich visuals, interactive UI, and a clean codebase.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚛️ React + Vite
+- 🎨 Tailwind CSS
+- 🌀 React Spring (for animations)
+- 🎠 Embla Carousel (image sliders)
+- 🧭 React Router (navigation)
+- 🛠️ ESLint + Prettier
 
-## Expanding the ESLint configuration
+## 📸 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Beautiful pizza-themed UI with high-quality imagery
+- Animated carousels for menu presentation
+- Responsive design
+- Scalable component structure
+
+## 📁 Project Setup
+
+```bash
+npm install
+npm run dev
